@@ -3,6 +3,8 @@ import java.io.IOException;
 
 public class Main {
 
+    DataParser parser = new DataParser();
+
     public String readRawDataToString() throws Exception{
         ClassLoader classLoader = getClass().getClassLoader();
         String result = IOUtils.toString(classLoader.getResourceAsStream("RawData.txt"));
@@ -11,7 +13,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         String output = (new Main()).readRawDataToString();
-        System.out.println(output);
+        //System.out.println(output);
 
+        //parser.generateLineList(output);
     }
+
+
 }
