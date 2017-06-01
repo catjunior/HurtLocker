@@ -1,13 +1,13 @@
 /**
  * Created by mattwu on 5/31/17.
  */
-public class Food {
+public class Item {
     private String name;
     private String price;
     private String type;
     private String expiration;
 
-    public Food(String name, String price, String type, String expiration) {
+    public Item(String name, String price, String type, String expiration) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -29,7 +29,5 @@ public class Food {
     public String getExpiration() {
         return expiration;
     }
-
-
 
 }
