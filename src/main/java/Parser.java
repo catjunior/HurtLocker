@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private int errors;
-    ArrayList<String> lineList = new ArrayList<String>();
+    private static int errors;
+    ArrayList<String> lineList = new ArrayList();
+    ArrayList<Item> itemList = new ArrayList();
 
 
     public ArrayList<String> splitLines(String input) {
@@ -23,8 +24,8 @@ public class Parser {
             return name.group(2);
         }
         else{
+            errors ++;
             throw new LineFormatException("Missing Name");
-            //errors ++; can't add..idk why
         }
     }
 
@@ -34,8 +35,8 @@ public class Parser {
             return price.group(2);
         }
         else{
+            errors ++;
             throw new LineFormatException("Missing Price");
-            //errors ++; can't add..idk why
         }
     }
 
@@ -45,8 +46,8 @@ public class Parser {
             return type.group(2);
         }
         else{
+            errors ++;
             throw new LineFormatException("Missing Type");
-            //errors ++; can't add..idk why
         }
     }
 
@@ -56,10 +57,19 @@ public class Parser {
             return exp.group(2);
         }
         else{
+            errors ++;
             throw new LineFormatException("Missing Expiration Date");
-            //errors ++; can't add..idk why
         }
     }
+
+    public ArrayList<Item> createItemList() throws LineFormatException {
+
+        for (int i=0; i< lineList.size(); i++){
+            itemList.add(new Item(nameMatcher(lineList.get(i)), priceMatcher(lineList.get(i)), typeMatcher(lineList.get(i)), expirationMatcher(lineList.get(i))));
+        }
+        return itemList;
+    }
+
 
 
 }
